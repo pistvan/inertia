@@ -18,6 +18,7 @@ const form = useForm({
 const confirmUserDeletion = () => {
     confirmingUserDeletion.value = true;
 
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     nextTick(() => passwordInput.value?.focus());
 };
 
