@@ -7,6 +7,7 @@ use App\Http\Requests\SendEmailRequest;
 use App\Mail\UserEmail;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Support\Facades\Mail;
 use Inertia\Inertia;
 
@@ -28,6 +29,17 @@ class SendEmailController extends Controller
             subject: $request->subject,
             message: $request->message,
         );
+
+        // Attach the file to the email if the user is authorized to do so.
+        if (
+            $request->user()->can('send-email-with-attachments') &&
+            $file = $request->file('file')
+        ) {
+            $attachment = Attachment::fromPath($file->getRealPath())
+                ->as($file->getClientOriginalName());
+
+            $mail->attach($attachment);
+        }
 
         Mail::send($mail);
 

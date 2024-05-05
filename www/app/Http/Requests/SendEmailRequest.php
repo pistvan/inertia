@@ -21,10 +21,16 @@ class SendEmailRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        $rules = [
             'email' => 'required|email',
             'subject' => 'required|string',
             'message' => 'required|string',
         ];
+
+        if (true || $this->user()->can('send-email-with-attachments')) {
+            $rules['attachments'] = 'nullable|file';
+        }
+
+        return $rules;
     }
 }

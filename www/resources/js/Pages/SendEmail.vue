@@ -6,11 +6,13 @@ import TextInput from '@/Components/TextInput.vue';
 import TextAreaInput from '@/Components/TextAreaInput.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import InputError from '@/Components/InputError.vue';
+import FileInput from '@/Components/FileInput.vue';
 
 const form = useForm({
     email: '',
     subject: '',
     message: '',
+    file: null as File | null,
 });
 
 const submit = () => {
@@ -75,6 +77,16 @@ const submit = () => {
                                     required
                                 />
                                 <InputError class="mt-2" :message="form.errors.message" />
+                            </div>
+
+                            <div v-if="$page.props.auth.can['send-email-with-attachments']" class="mt-4">
+                                <InputLabel for="attachment" value="Attachment" />
+                                <FileInput
+                                    id="attachment"
+                                    class="block mt-1 w-full"
+                                    v-model="form.file"
+                                    required
+                                />
                             </div>
 
                             <div class="mt-4">
