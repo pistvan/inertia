@@ -85,7 +85,6 @@ const submit = () => {
                                     id="attachment"
                                     class="block mt-1 w-full"
                                     v-model="form.file"
-                                    required
                                 />
                             </div>
 
