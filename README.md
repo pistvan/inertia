@@ -12,3 +12,7 @@ Open http://localhost/ in a browser, then use one of these users to log in:
 
 * `admin@example.com` / `password`
 * `user@example.com` / `password`
+
+## Emails
+
+Emails are sent to a mail trap service called Mailhog, which you can access on http://localhost:81/.
