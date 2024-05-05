@@ -25,6 +25,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/email', [SendEmailController::class, 'edit'])->name('send-email');
+    Route::post('/email', [SendEmailController::class, 'store'])->name('send-email.store');
 });
 
 require __DIR__.'/auth.php';

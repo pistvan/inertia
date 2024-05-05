@@ -10,4 +10,5 @@ export type PageProps<T extends Record<string, unknown> = Record<string, unknown
         user: User;
         can: Record<string, true | undefined>;
     };
+    flash: string | null;
 };

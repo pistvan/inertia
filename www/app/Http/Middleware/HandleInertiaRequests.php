@@ -35,6 +35,7 @@ class HandleInertiaRequests extends Middleware
                 'user' => $request->user()?->only('id', 'name', 'email', 'email_verified_at'),
                 'can'  => $request->session()->get('permissions', []),
             ],
+            'flash' => $request->session()->get('flash-message'),
         ];
     }
 }
