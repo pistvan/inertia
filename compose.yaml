@@ -42,12 +42,14 @@ services:
     user: ${USER_ID}:${GROUP_ID}
 
   vite:
-    image: node:20-alpine3.16
+    image: node:20-alpine3.18
     ports:
       - 5173:5173
     volumes:
+      - ./vite:/config:ro
       - ./www:/var/www
     working_dir: /var/www
+    entrypoint: /config/entrypoint.sh
     command: "npm run dev"
     user: ${USER_ID}:${GROUP_ID}
 
